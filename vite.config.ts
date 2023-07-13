@@ -26,8 +26,8 @@ export default defineConfig({
         name: 'Football CRUD App',
         short_name: 'Football CRUD App',
         description: 'Football CRUD App',
-        theme_color: '#F97794',
-        background_color: '#F97794',
+        theme_color: '#111827',
+        background_color: '#111827',
         icons: [
           {
             src: '/android-chrome-192x192.png',
