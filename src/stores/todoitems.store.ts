@@ -1,61 +1,33 @@
 import { defineStore } from 'pinia';
-import { computed, ref } from 'vue';
 import { useStorage } from '@vueuse/core';
 
-export const useToDoItemsStore = defineStore('todoitems', {
-  state: () => ({ drillDescription: '', drillName: '' }),
-  getters: {},
-  actions: {
-    setDrillName(drillName: string) {
-      console.log(this.drillName, 'this.drillname');
-      this.drillName = drillName;
-    },
-  },
-  persist: {
-    paths: ['drillDescription', 'drillName'],
-    afterRestore: (ctx) => {
-      console.log(`just restored '${ctx.store.$id}'`);
-    },
-    debug: true,
-    storage: localStorage,
-  },
-});
-
-export const useCounterStore = defineStore(
-  'counter',
-  () => {
-    const count = ref(0);
-    const doubleCount = computed(() => count.value * 2);
-    function increment() {
-      count.value++;
-    }
-
-    return { count, doubleCount, increment };
-  },
-  {
-    persist: true,
-  }
-);
-
-export const useMainStore = defineStore({
-  id: 'main',
+export const useToDoItemsStore = defineStore({
+  id: 'todoitems',
   state: () => ({
-    todos: useStorage('todos', [], localStorage, { mergeDefaults: true }),
+    drills: useStorage(
+      'drills',
+      [{ name: '', description: '' }],
+      localStorage,
+      {
+        mergeDefaults: true,
+      }
+    ),
   }),
   getters: {
-    getAllTodos(testTodos: any) {
-      return this.todos;
+    getAllDrills(testTodos: any) {
+      return this.drills;
     },
-    todoEmpty(deleteTodo: any) {
-      return this.todos.length <= 0;
+    drillsDelete(deleteTodo: any) {
+      return this.drills.length <= 0;
     },
   },
   actions: {
-    addTodo(todo: any) {
-      this.todos.push(todo);
+    addTodo(drillName: string, drillDescription: string) {
+      const newDrill = { name: drillName, description: drillDescription };
+      this.drills.push(newDrill);
     },
     removeTodo(index: any) {
-      this.todos.splice(index, 1);
+      this.drills.splice(index, 1);
     },
   },
 });
