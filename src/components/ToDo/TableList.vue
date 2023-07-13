@@ -29,7 +29,7 @@
 
           <td class="flex items-center px-6 py-4 space-x-3">
             <a
-              href="#"
+              @click="$emit('editModal')"
               class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
               >Edit</a
             >
@@ -47,9 +47,11 @@
 
 <script setup lang="ts">
 import { useToDoItemsStore } from '@/stores/todoitems.store';
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 
 const todoStore = useToDoItemsStore();
 
 const drills = computed(() => todoStore.getAllDrills);
+
+const showModal = ref(false);
 </script>
