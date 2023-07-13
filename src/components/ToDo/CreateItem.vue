@@ -1,7 +1,7 @@
 <template>
   <!-- SE DENNE ARTIKEL https://stephanlangeveld.medium.com/simple-local-storage-implementation-using-vue-3-vueuse-and-pinia-with-zero-extra-lines-of-code-cb9ed2cce42a -->
   <div
-    class="w-full p-6 m-4 bg-opacity-50 rounded shadow Pastel bg-gradient-to-tr from-violet-500 to-orange-300 backdrop-blur-xl drop-shadow-lg lg:w-3/4 lg:max-w-lg"
+    class="flex w-full p-6 m-4 bg-opacity-50 rounded shadow Pastel bg-gradient-to-tr from-violet-500 to-orange-300 backdrop-blur-xl drop-shadow-lg lg:w-3/4 lg:max-w-lg"
   >
     <div class="max-w-2xl px-4 py-8 mx-auto lg:py-16">
       <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">
