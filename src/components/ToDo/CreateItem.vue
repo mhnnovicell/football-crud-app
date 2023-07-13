@@ -155,11 +155,6 @@
         </a>
       </div>
     </section>
-
-    <p v-for="(todo, index) in drills" :key="index">
-      {{ index }}: {{ todo.name }} {{ todo.description }}
-      <button @click="todoStore.removeTodo(index)">delete</button>
-    </p>
   </div>
 </template>
 
