@@ -23,9 +23,9 @@ export default defineConfig({
       },
       includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'masked-icon.svg'],
       manifest: {
-        name: 'Bue og Monicas Bryllup',
-        short_name: 'Bue og Monicas Bryllup',
-        description: 'Bue og Monicas Bryllup',
+        name: 'Football CRUD App',
+        short_name: 'Football CRUD App',
+        description: 'Football CRUD App',
         theme_color: '#F97794',
         background_color: '#F97794',
         icons: [
