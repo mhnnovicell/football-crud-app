@@ -4,6 +4,10 @@ import { defineAsyncComponent } from 'vue';
 const CreateItem = defineAsyncComponent(
   () => import('./components/ToDo/CreateItem.vue')
 );
+
+const TableList = defineAsyncComponent(
+  () => import('./components/ToDo/TableList.vue')
+);
 </script>
 
 <template>
@@ -13,6 +17,7 @@ const CreateItem = defineAsyncComponent(
       class="flex items-center justify-center w-full h-screen font-sans bg-gradient-to-t from-gray-700 via-gray-900 to-black"
     >
       <CreateItem />
+      <TableList />
     </div>
     <!-- loading state via #fallback slot -->
     <template #fallback>
