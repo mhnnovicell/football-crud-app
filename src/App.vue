@@ -4,7 +4,7 @@ import CreateToDoItem from './components/CreateToDoItem.vue';
 
 <template>
   <div
-    class="flex items-center justify-center w-full h-screen font-sans bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500"
+    class="flex items-center justify-center w-full h-screen font-sans bg-gradient-to-b from-gray-900 to-gray-600 bg-gradient-to-r"
   >
     <CreateToDoItem />
   </div>

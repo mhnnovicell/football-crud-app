@@ -1,5 +1,7 @@
 <template>
-  <div class="w-full p-6 m-4 bg-white rounded shadow lg:w-3/4 lg:max-w-lg">
+  <div
+    class="w-full p-6 m-4 bg-opacity-50 rounded shadow Pastel bg-gradient-to-tr from-violet-500 to-orange-300 backdrop-blur-xl drop-shadow-lg lg:w-3/4 lg:max-w-lg"
+  >
     <div class="mb-4">
       <h1 class="text-grey-darkest">
         Todo List {{ todoitemsStore.someState }}
