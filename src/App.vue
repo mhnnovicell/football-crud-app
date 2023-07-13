@@ -1,11 +1,34 @@
 <script setup lang="ts">
-import CreateToDoItem from './components/CreateToDoItem.vue';
+import { defineAsyncComponent } from 'vue';
+
+const CreateToDoItem = defineAsyncComponent(
+  () => import('./components/CreateToDoItem.vue')
+);
 </script>
 
 <template>
-  <div
-    class="flex items-center justify-center w-full h-screen font-sans bg-gradient-to-b from-gray-900 to-gray-600 bg-gradient-to-r"
-  >
-    <CreateToDoItem />
-  </div>
+  <Suspense>
+    <!-- component with nested async dependencies -->
+    <div
+      class="flex items-center justify-center w-full h-screen font-sans bg-gradient-to-t from-gray-700 via-gray-900 to-black"
+    >
+      <CreateToDoItem />
+    </div>
+    <!-- loading state via #fallback slot -->
+    <template #fallback>
+      <div
+        class="items-center justify-center w-full h-screen text-center bg-gradient-to-t from-gray-700 via-gray-900 to-black align-center"
+      >
+        <div class="flex items-center justify-center w-full h-screen">
+          <div
+            class="animate-spin flex items-center justify-center w-6 h-6 border-[3px] border-current border-t-transparent text-purple-600 rounded-full"
+            role="status"
+            aria-label="loading"
+          >
+            <span class="sr-only">Loading...</span>
+          </div>
+        </div>
+      </div>
+    </template>
+  </Suspense>
 </template>
