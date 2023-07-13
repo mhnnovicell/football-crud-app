@@ -4,7 +4,7 @@
     v-if="drills.length >= 1"
   >
     <table
-      class="w-full max-w-xs text-sm text-left text-gray-500 dark:text-gray-400"
+      class="w-full max-w-xs text-sm text-left text-gray-500 shadow-md dark:text-gray-400"
     >
       <thead
         class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
@@ -22,8 +22,9 @@
           v-for="(drill, index) in drills"
           :key="index"
         >
-          <td class="px-6 py-4">{{ drill.name }}</td>
-          <td class="px-6 py-4">{{ drill.description }}</td>
+          <td class="px-6 py-4 whitespace-nowrap">{{ drill.name }}</td>
+          <td class="px-6 py-4 whitespace-nowrap">{{ drill.description }}</td>
+          <td class="px-6 py-4"></td>
           <td class="px-6 py-4"></td>
 
           <td class="flex items-center px-6 py-4 space-x-3">
