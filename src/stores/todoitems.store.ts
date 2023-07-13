@@ -43,18 +43,18 @@ export const useMainStore = defineStore({
     todos: useStorage('todos', [], localStorage, { mergeDefaults: true }),
   }),
   getters: {
-    getAllTodos() {
+    getAllTodos(testTodos: any) {
       return this.todos;
     },
-    todoEmpty() {
+    todoEmpty(deleteTodo: any) {
       return this.todos.length <= 0;
     },
   },
   actions: {
-    addTodo(todo) {
+    addTodo(todo: any) {
       this.todos.push(todo);
     },
-    removeTodo(index) {
+    removeTodo(index: any) {
       this.todos.splice(index, 1);
     },
   },
