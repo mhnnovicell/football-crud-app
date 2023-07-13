@@ -1,6 +1,6 @@
 <template>
   <div
-    class="relative overflow-x-auto shadow-md sm:rounded-lg"
+    class="relative flex overflow-x-auto shadow-md sm:rounded-lg"
     v-if="drills.length >= 1"
   >
     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
