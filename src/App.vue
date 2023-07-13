@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { defineAsyncComponent } from 'vue';
 
-const CreateToDoItem = defineAsyncComponent(
-  () => import('./components/CreateToDoItem.vue')
+const CreateItem = defineAsyncComponent(
+  () => import('./components/ToDo/CreateItem.vue')
 );
 </script>
 
@@ -12,7 +12,7 @@ const CreateToDoItem = defineAsyncComponent(
     <div
       class="flex items-center justify-center w-full h-screen font-sans bg-gradient-to-t from-gray-700 via-gray-900 to-black"
     >
-      <CreateToDoItem />
+      <CreateItem />
     </div>
     <!-- loading state via #fallback slot -->
     <template #fallback>

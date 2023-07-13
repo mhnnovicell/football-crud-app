@@ -1,13 +1,21 @@
-import { ref } from 'vue';
 import { defineStore } from 'pinia';
 
-export const useToDoItemsStore = defineStore(
-  'todoitems',
-  () => {
-    const someState = ref('hello pinia');
-    return { someState };
+export const useToDoItemsStore = defineStore('todoitems', {
+  state: () => ({ count: 0, name: 'Eduardo' }),
+  getters: {
+    doubleCount: (state) => state.count * 2,
   },
-  {
-    persist: { storage: localStorage, paths: ['someState'] },
-  }
-);
+  actions: {
+    increment() {
+      this.count++;
+    },
+  },
+  persist: {
+    paths: ['count', 'name'],
+    afterRestore: (ctx) => {
+      console.log(`just restored '${ctx.store.$id}'`);
+    },
+    debug: true,
+    storage: localStorage,
+  },
+});
