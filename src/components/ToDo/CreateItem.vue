@@ -62,7 +62,7 @@ const drillDescription = ref('');
 
 const addToDo = async () => {
   if (drillName.value != '') {
-    await todoStore.addToDo(drillName.value, drillDescription.value);
+    await todoStore.addToDo(drillName.value, drillDescription.value, false);
     drillName.value = '';
     drillDescription.value = '';
   }

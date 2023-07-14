@@ -16,8 +16,8 @@ export const useToDoItemsStore = defineStore({
       const { data } = await supabase.from('drills').select();
       this.drills = data;
     },
-    async addTodo(name: string, description: string) {
-      const newDrill = { name, description };
+    async addTodo(name: string, description: string, isActive: boolean) {
+      const newDrill = { name, description, isActive };
       const { data } = await supabase.from('drills').insert(newDrill);
       this.drills.push(newDrill);
       return data;
