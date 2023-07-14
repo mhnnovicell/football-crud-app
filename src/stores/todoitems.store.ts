@@ -5,6 +5,7 @@ export const useToDoItemsStore = defineStore({
   id: 'todoitems',
   state: () => ({
     drills: [{ name: '', description: '' }],
+    selectedDrillId: 0,
   }),
   getters: {
     drillsDelete(drill: any) {

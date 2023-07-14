@@ -26,14 +26,14 @@
             <td class="px-6 py-4"></td>
             <td class="flex items-center px-6 py-4 space-x-3">
               <a
-                @click="openModal"
+                @click="openModal(drill.id)"
                 class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-                >Edit</a
+                >Rediger</a
               >
               <a
                 @click="todoStore.deleteDrill(drill.id)"
                 class="font-medium text-red-600 dark:text-red-500 hover:underline"
-                >Remove</a
+                >Fjern</a
               >
             </td>
           </tr>
@@ -63,7 +63,10 @@ watchEffect(async () => {
 
 const showModal = ref(false);
 
-const openModal = () => {
+const selectedDrillId = ref(0);
+
+const openModal = (drillId: number) => {
   showModal.value = true;
+  todoStore.selectedDrillId = drillId;
 };
 </script>

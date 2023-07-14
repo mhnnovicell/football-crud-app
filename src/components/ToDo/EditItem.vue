@@ -37,7 +37,7 @@
           <form class="space-y-6" action="#">
             <div
               class="flex flex-col w-full"
-              v-for="drill in todoStore.drills"
+              v-for="drill in drillData"
               :key="drill.id"
             >
               <div class="w-full">
@@ -104,8 +104,22 @@
 <script setup lang="ts">
 import { useToDoItemsStore } from '@/stores/todoitems.store';
 import { ref } from 'vue';
+import { supabase } from '../../supabase';
 
 const todoStore = useToDoItemsStore();
 
 const isActive = ref(false);
+
+const drillData = ref(null);
+
+await supabase
+  .from('drills')
+  .select()
+  .eq('id', todoStore.selectedDrillId)
+  .then((result) => {
+    drillData.value = result.data;
+  })
+  .catch((err) => {
+    alert(err);
+  });
 </script>
