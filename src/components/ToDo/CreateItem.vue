@@ -70,7 +70,7 @@
         </div>
       </form>
       <a
-        @click="AddTodo"
+        @click="addToDo"
         class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-primary-700 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800"
       >
         Tilføj øvelse
@@ -88,9 +88,9 @@ const todoStore = useToDoItemsStore();
 const drillName = ref('');
 const drillDescription = ref('');
 
-const AddTodo = async () => {
+const addToDo = async () => {
   if (drillName.value != '') {
-    await todoStore.addTodo(drillName.value, drillDescription.value);
+    await todoStore.addToDo(drillName.value, drillDescription.value);
     drillName.value = '';
     drillDescription.value = '';
   }

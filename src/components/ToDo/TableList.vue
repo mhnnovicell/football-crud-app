@@ -31,7 +31,7 @@
                 >Edit</a
               >
               <a
-                @click="removeDrill(drill.id)"
+                @click="todoStore.deleteDrill(drill.id)"
                 class="font-medium text-red-600 dark:text-red-500 hover:underline"
                 >Remove</a
               >
@@ -65,10 +65,5 @@ const showModal = ref(false);
 
 const openModal = () => {
   showModal.value = true;
-};
-
-const removeDrill = async (id: number) => {
-  await supabase.from('drills').delete().eq('id', id);
-  return getAllDrills();
 };
 </script>

@@ -22,5 +22,17 @@ export const useToDoItemsStore = defineStore({
       this.drills.push(newDrill);
       return data;
     },
+    async deleteDrill(id: number) {
+      await supabase.from('drills').delete().eq('id', id);
+      return this.getAllDrills();
+    },
+    async editDrill(activeValue: boolean, id: number) {
+      await supabase
+        .from('drills')
+        .update({ isActive: activeValue })
+        .eq('id', id)
+        .select();
+      return this.getAllDrills();
+    },
   },
 });
