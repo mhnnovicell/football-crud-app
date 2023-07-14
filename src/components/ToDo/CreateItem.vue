@@ -88,11 +88,9 @@ const todoStore = useToDoItemsStore();
 const drillName = ref('');
 const drillDescription = ref('');
 
-const drills = computed(() => todoStore.getAllDrills);
-
-const AddTodo = () => {
+const AddTodo = async () => {
   if (drillName.value != '') {
-    todoStore.addTodo(drillName.value, drillDescription.value);
+    await todoStore.addTodo(drillName.value, drillDescription.value);
     drillName.value = '';
     drillDescription.value = '';
   }

@@ -1,7 +1,7 @@
 <template>
   <div
     class="relative flex max-w-xs overflow-x-auto shadow-md sm:rounded-lg"
-    v-if="drills.length >= 1"
+    v-if="allDrills.length >= 1"
   >
     <table
       class="w-full max-w-xs text-sm text-left text-gray-500 shadow-md dark:text-gray-400"
@@ -19,9 +19,12 @@
       <tbody>
         <tr
           class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
-          v-for="(drill, index) in drills"
-          :key="index"
+          v-for="drill in allDrills"
+          :key="drill.id"
         >
+          {{
+            drill.id
+          }}
           <td class="px-6 py-4 whitespace-nowrap">{{ drill.name }}</td>
           <td class="px-6 py-4 whitespace-nowrap">{{ drill.description }}</td>
           <td class="px-6 py-4"></td>
@@ -34,7 +37,7 @@
               >Edit</a
             >
             <a
-              @click="todoStore.removeTodo(index)"
+              @click="removeTodo(drill.id)"
               class="font-medium text-red-600 dark:text-red-500 hover:underline"
               >Remove</a
             >
@@ -48,16 +51,36 @@
 
 <script setup lang="ts">
 import { useToDoItemsStore } from '@/stores/todoitems.store';
-import { computed, ref } from 'vue';
+import { computed, onMounted, onUpdated, ref, watch } from 'vue';
 import EditItem from '@/components/ToDo/EditItem.vue';
+import { supabase } from '../../supabase';
 
 const todoStore = useToDoItemsStore();
 
-const drills = computed(() => todoStore.getAllDrills);
+const allDrills = ref([]);
+
+const drills = async () => {
+  const result = await todoStore.getAllDrills();
+  allDrills.value = result;
+};
+
+onMounted(async () => {
+  await drills();
+});
+
+onUpdated(async () => {
+  await drills();
+});
+
+const getDrillsdrills = computed(() => allDrills.value);
 
 const showModal = ref(false);
 
 const openModal = () => {
   showModal.value = true;
+};
+
+const removeTodo = async (id: number) => {
+  return await supabase.from('drills').delete().eq('id', id);
 };
 </script>
