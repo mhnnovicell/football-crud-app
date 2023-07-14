@@ -1,25 +1,25 @@
 import { defineStore } from 'pinia';
-import { useStorage } from '@vueuse/core';
 import { supabase } from '../supabase';
 
 export const useToDoItemsStore = defineStore({
   id: 'todoitems',
   state: () => ({
-    drills: [{ drillName: '', drillDescription: '' }],
+    drills: [{ name: '', description: '' }],
   }),
   getters: {
-    drillsDelete(deleteTodo: any) {
+    drillsDelete(drill: any) {
       return this.drills.length <= 0;
     },
   },
   actions: {
-    async getAllDrills(testTodos: any) {
-      const { data, error } = await supabase.from('drills').select();
-      return (this.drills = data);
+    async getAllDrills() {
+      const { data } = await supabase.from('drills').select();
+      this.drills = data;
     },
-    async addTodo(drillName: string, drillDescription: string) {
-      const newDrill = [{ name: drillName, description: drillDescription }];
-      const { data } = await supabase.from('drills').insert(...newDrill);
+    async addTodo(name: string, description: string) {
+      const newDrill = { name, description };
+      const { data } = await supabase.from('drills').insert(newDrill);
+      this.drills.push(newDrill);
       return data;
     },
   },
