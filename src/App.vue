@@ -2,11 +2,11 @@
   <Suspense>
     <!-- component with nested async dependencies -->
     <div
-      class="flex flex-wrap items-center justify-center w-full h-screen font-sans bg-gradient-to-t from-gray-700 via-gray-900 to-black"
+      class="flex flex-wrap items-center justify-center w-full h-full font-sans bg-gradient-to-t from-gray-700 via-gray-900 to-black"
     >
       <CreateItem />
-      <TableList />
       <ActiveItems />
+      <TableList />
     </div>
     <!-- loading state via #fallback slot -->
     <template #fallback>

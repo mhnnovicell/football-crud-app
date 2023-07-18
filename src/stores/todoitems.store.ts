@@ -6,6 +6,7 @@ export const useToDoItemsStore = defineStore({
   state: () => ({
     drills: [{ name: '', description: '' }],
     selectedDrillId: 0,
+    activeDrills: [{ name: '', description: '', isActive: false }],
   }),
   getters: {
     drillsDelete(drill: any) {
@@ -34,6 +35,16 @@ export const useToDoItemsStore = defineStore({
         .eq('id', id)
         .select();
       return this.getAllDrills();
+    },
+
+    async getAllActiveDrills() {
+      const { data } = await supabase
+        .from('drills')
+        .select('*')
+        .filter('isActive', 'eq', true);
+
+      console.log(data, 'datafromallactivedrills');
+      this.activeDrills = data;
     },
   },
 });

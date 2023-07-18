@@ -1,9 +1,10 @@
 <template>
-  <div v-for="drill in todoStore.drills" :key="drill.id">
+  <div class="flex w-full h-full justify-center items-center m-4 flex-col">
     <div
-      v-if="drill.isActive"
+      v-for="drill in todoStore.activeDrills"
+      :key="drill.id"
       href="#"
-      class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
+      class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 m-3 w-full"
     >
       <h5
         class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
@@ -21,4 +22,6 @@
 import { useToDoItemsStore } from '@/stores/todoitems.store';
 
 const todoStore = useToDoItemsStore();
+
+todoStore.getAllActiveDrills();
 </script>
