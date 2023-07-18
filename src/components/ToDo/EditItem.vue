@@ -11,7 +11,7 @@
         <button
           type="button"
           class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-          data-modal-hide="authentication-modal"
+          @click="closeModalWithoutValue"
         >
           <svg
             class="w-3 h-3"
@@ -87,7 +87,7 @@
                 </div>
               </div>
               <button
-                @click.prevent="todoStore.editDrill(isActive, drill.id)"
+                @click.prevent="closeModal(drill.id)"
                 type="submit"
                 class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
               >
@@ -103,7 +103,7 @@
 
 <script setup lang="ts">
 import { useToDoItemsStore } from '@/stores/todoitems.store';
-import { ref } from 'vue';
+import { ref, watch, computed } from 'vue';
 import { supabase } from '../../supabase';
 
 const todoStore = useToDoItemsStore();
@@ -122,4 +122,34 @@ await supabase
   .catch((err) => {
     alert(err);
   });
+
+const props = defineProps({
+  show: {
+    type: Boolean,
+    required: true,
+  },
+});
+
+const localShow = ref(false);
+
+// Watch for changes in the prop 'show' and update the local value accordingly
+watch(
+  () => props.show,
+  (newVal) => {
+    localShow.value = newVal;
+  }
+);
+
+const emit = defineEmits(['close']);
+
+const closeModal = (id: number) => {
+  todoStore.editDrill(isActive.value, id);
+  localShow.value = false;
+  emit('close');
+};
+
+const closeModalWithoutValue = () => {
+  localShow.value = false;
+  emit('close');
+};
 </script>

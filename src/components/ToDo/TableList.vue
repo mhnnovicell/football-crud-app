@@ -26,7 +26,7 @@
             <td class="px-6 py-4"></td>
             <td class="flex items-center px-6 py-4 space-x-3">
               <a
-                @click="openModal(drill.id)"
+                @click="toggleModal(drill.id)"
                 class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                 >Rediger</a
               >
@@ -40,7 +40,11 @@
         </tbody>
       </table>
     </div>
-    <EditItem v-if="showModal"></EditItem>
+    <EditItem
+      :show="showModal"
+      @close="toggleModal"
+      v-if="showModal"
+    ></EditItem>
   </template>
 </template>
 
@@ -63,10 +67,11 @@ watchEffect(async () => {
 
 const showModal = ref(false);
 
-const selectedDrillId = ref(0);
+const emit = defineEmits(['toggleModal']);
 
-const openModal = (drillId: number) => {
-  showModal.value = true;
+const toggleModal = (drillId: number) => {
+  emit('toggleModal', showModal.value);
+  showModal.value = !showModal.value;
   todoStore.selectedDrillId = drillId;
 };
 </script>

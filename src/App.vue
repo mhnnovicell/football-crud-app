@@ -1,15 +1,3 @@
-<script setup lang="ts">
-import { defineAsyncComponent } from 'vue';
-
-const CreateItem = defineAsyncComponent(
-  () => import('./components/ToDo/CreateItem.vue')
-);
-
-const TableList = defineAsyncComponent(
-  () => import('./components/ToDo/TableList.vue')
-);
-</script>
-
 <template>
   <Suspense>
     <!-- component with nested async dependencies -->
@@ -18,6 +6,7 @@ const TableList = defineAsyncComponent(
     >
       <CreateItem />
       <TableList />
+      <ActiveItems />
     </div>
     <!-- loading state via #fallback slot -->
     <template #fallback>
@@ -37,3 +26,19 @@ const TableList = defineAsyncComponent(
     </template>
   </Suspense>
 </template>
+
+<script setup lang="ts">
+import { defineAsyncComponent } from 'vue';
+
+const CreateItem = defineAsyncComponent(
+  () => import('./components/ToDo/CreateItem.vue')
+);
+
+const TableList = defineAsyncComponent(
+  () => import('./components/ToDo/TableList.vue')
+);
+
+const ActiveItems = defineAsyncComponent(
+  () => import('./components/ToDo/ActiveItems.vue')
+);
+</script>
