@@ -146,6 +146,7 @@ const closeModal = (id: number) => {
   todoStore.editDrill(isActive.value, id);
   localShow.value = false;
   emit('close');
+  todoStore.getAllActiveDrills();
 };
 
 const closeModalWithoutValue = () => {

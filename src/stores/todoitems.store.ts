@@ -6,7 +6,7 @@ export const useToDoItemsStore = defineStore({
   state: () => ({
     drills: [{ name: '', description: '' }],
     selectedDrillId: 0,
-    activeDrills: [{ name: '', description: '', isActive: false }],
+    activeDrills: [{ name: '', description: '', id: 0, isActive: false }],
   }),
   getters: {
     drillsDelete(drill: any) {
@@ -43,7 +43,6 @@ export const useToDoItemsStore = defineStore({
         .select('*')
         .filter('isActive', 'eq', true);
 
-      console.log(data, 'datafromallactivedrills');
       this.activeDrills = data;
     },
   },

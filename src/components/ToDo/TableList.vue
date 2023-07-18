@@ -1,8 +1,6 @@
 <template>
   <template v-if="todoStore.drills.length >= 1">
-    <div
-      class="relative flex max-w-xs overflow-x-auto shadow-md sm:rounded-lg m-4"
-    >
+    <div class="relative flex m-4 overflow-x-auto shadow-md sm:rounded-lg">
       <table
         class="w-full max-w-xs text-sm text-left text-gray-500 shadow-md dark:text-gray-400"
       >
