@@ -16,13 +16,13 @@
         </thead>
         <tbody>
           <tr
-            class="bg-white border-b hover:bg-gray-50"
+            class="bg-gray-800 border-b border-gray-700 hover:bg-gray-600"
             v-for="drill in sortedDrills"
             :key="drill.id"
             :class="
               drill.isActive
                 ? 'bg-green-950 text-white border-gray-700 dark:hover:bg-gray-600'
-                : 'dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-600'
+                : ''
             "
           >
             <td class="px-6 py-4 whitespace-nowrap">{{ drill.name }}</td>
