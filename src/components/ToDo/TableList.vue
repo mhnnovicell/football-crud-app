@@ -16,9 +16,14 @@
         </thead>
         <tbody>
           <tr
-            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
-            v-for="drill in todoStore.drills"
+            class="bg-white border-b hover:bg-gray-50"
+            v-for="drill in sortedDrills"
             :key="drill.id"
+            :class="
+              drill.isActive
+                ? 'bg-green-950 text-white border-gray-700 dark:hover:bg-gray-600'
+                : 'dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-600'
+            "
           >
             <td class="px-6 py-4 whitespace-nowrap">{{ drill.name }}</td>
             <td class="px-6 py-4 whitespace-nowrap">{{ drill.description }}</td>
@@ -56,13 +61,8 @@ import { supabase } from '../../supabase';
 
 const todoStore = useToDoItemsStore();
 
-const getAllDrills = async () => {
-  const result = await todoStore.getAllDrills();
-  return result;
-};
-
 watchEffect(async () => {
-  await getAllDrills();
+  await todoStore.getAllDrills();
 });
 
 const showModal = ref(false);
@@ -74,4 +74,16 @@ const toggleModal = (drillId: number) => {
   showModal.value = !showModal.value;
   todoStore.selectedDrillId = drillId;
 };
+
+const sortedDrills = computed(() => {
+  return todoStore.drills.sort((a, b) => {
+    if (a.isActive && !b.isActive) {
+      return -1;
+    } else if (!a.isActive && b.isActive) {
+      return 1;
+    } else {
+      return 0;
+    }
+  });
+});
 </script>

@@ -10,7 +10,8 @@
     <div
       class="w-full p-4 my-4 text-center bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700"
       v-for="drill in todoStore.activeDrills"
-      :key="drill.id"
+      :key="drill.id + drill.name"
+      :class="drill.isActive ? 'shadow-md shadow-green-900' : ''"
     >
       <h5 class="mb-2 text-3xl font-bold text-gray-900 dark:text-white">
         {{ drill.name }}
@@ -22,8 +23,8 @@
         class="items-center justify-center space-y-4 sm:flex sm:space-y-0 sm:space-x-4"
       >
         <a
-          :click="toggleActiveStatus(drill.isActive, drill.id)"
-          class="inline-flex items-center justify-center w-2/3 p-2 text-white rounded-lg shadow-sm sm:w-auto shadow-red-500"
+          @click="toggleActiveStatus(false, drill.id)"
+          class="inline-flex items-center justify-center w-2/3 p-2 text-white rounded-lg shadow-sm sm:w-auto shadow-red-500 cursor-pointer"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -54,16 +55,15 @@
 
 <script setup lang="ts">
 import { useToDoItemsStore } from '@/stores/todoitems.store';
-import { ref } from 'vue';
+import { ref, watchEffect } from 'vue';
 
 const todoStore = useToDoItemsStore();
 
-const isActive = ref(false);
+watchEffect(async () => {
+  todoStore.getAllActiveDrills();
+});
 
-todoStore.getAllActiveDrills();
-
-const toggleActiveStatus = (activeBool: false, id: number) => {
+const toggleActiveStatus = (activeBool: boolean, id: number) => {
   todoStore.editDrill(activeBool, id);
-  // todoStore.getAllActiveDrills();
 };
 </script>

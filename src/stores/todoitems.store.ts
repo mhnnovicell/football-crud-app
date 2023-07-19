@@ -29,12 +29,12 @@ export const useToDoItemsStore = defineStore({
       return this.getAllDrills();
     },
     async editDrill(activeValue: boolean, id: number) {
-      await supabase
+      const { data } = await supabase
         .from('drills')
         .update({ isActive: activeValue })
-        .eq('id', id)
-        .select();
-      return this.getAllDrills();
+        .eq('id', id);
+
+      return data;
     },
 
     async getAllActiveDrills() {
