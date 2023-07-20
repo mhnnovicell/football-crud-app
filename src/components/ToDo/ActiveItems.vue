@@ -1,5 +1,10 @@
 <template>
-  <div class="flex flex-col items-center justify-center w-full h-full m-4">
+  <div
+    class="flex flex-col items-center justify-center w-full h-full m-4"
+    @drop="onDrop($event, 1)"
+    @dragenter.prevent
+    @dragover.prevent
+  >
     <h3
       class="mb-4 text-xl font-bold text-gray-900 dark:text-white"
       v-if="todoStore.activeDrills >= 1"
@@ -12,6 +17,8 @@
       v-for="drill in todoStore.activeDrills"
       :key="drill.id + drill.name"
       :class="drill.isActive ? 'shadow-md shadow-green-900' : ''"
+      draggable="true"
+      @dragstart="startDrag($event, drill)"
     >
       <h5 class="mb-2 text-3xl font-bold text-gray-900 dark:text-white">
         {{ drill.name }}
@@ -24,7 +31,7 @@
       >
         <a
           @click="toggleActiveStatus(false, drill.id)"
-          class="inline-flex items-center justify-center w-2/3 p-2 text-white rounded-lg shadow-sm sm:w-auto shadow-red-500 cursor-pointer"
+          class="inline-flex items-center justify-center w-2/3 p-2 text-white rounded-lg shadow-sm cursor-pointer sm:w-auto shadow-red-500"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -65,5 +72,18 @@ watchEffect(async () => {
 
 const toggleActiveStatus = (activeBool: boolean, id: number) => {
   todoStore.editDrill(activeBool, id);
+};
+
+const startDrag = (event: DragEvent, item) => {
+  console.log(event, item, 'console log');
+  if (event.dataTransfer) {
+    event.dataTransfer.dropEffect = 'move';
+    event.dataTransfer.effectAllowed = 'move';
+    event.dataTransfer.setData('itemID', item.id))
+  }
+};
+
+const onDrop = (event, list) => {
+const itemID = event.dataTransfer.getData('itemID')
 };
 </script>
