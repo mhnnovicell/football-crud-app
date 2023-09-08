@@ -1,0 +1,3 @@
+[submodule "src/submoduletest"]
+	path = src/submoduletest
+	url = https://github.com/mhnnovicell/football-crud-app.git
