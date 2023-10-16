@@ -45,5 +45,9 @@ export const useToDoItemsStore = defineStore({
 
       this.activeDrills = data;
     },
+    async updateActiveDrillsOrder(id: number) {
+      const { data } = await supabase.from('drills').update().eq('id', id);
+      this.activeDrills = data;
+    },
   },
 });
