@@ -22,10 +22,58 @@
       :draggable="true"
       @dragstart="startDrag($event, drill)"
       @dragend="endDrag($event, drill)"
-      @touchstart="touchStart($event, drill)"
-      @touchend="touchEnd($event, drill)"
       :id="drill.id + drill.name"
     >
+      <div class="flex justify-end px-4 pb-4">
+        <button
+          @click="moveDrillDown(drill)"
+          :disabled="isLastItem(drill)"
+          class="inline-block text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-1.5"
+          type="button"
+          v-if="!isLastItem(drill)"
+        >
+          <span class="sr-only">Move drill down</span>
+
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="w-5 h-5"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M19.5 8.25l-7.5 7.5-7.5-7.5"
+            />
+          </svg>
+        </button>
+
+        <button
+          :disabled="isFirstItem(drill)"
+          @click="moveDrillUp(drill)"
+          class="inline-block text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-1.5"
+          type="button"
+          v-if="!isFirstItem(drill)"
+        >
+          <span class="sr-only">>Move drill up</span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="w-5 h-5"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M4.5 15.75l7.5-7.5 7.5 7.5"
+            />
+          </svg>
+        </button>
+      </div>
       <h5 class="mb-2 text-3xl font-bold text-gray-900 dark:text-white">
         {{ drill.name }}
       </h5>
@@ -116,18 +164,31 @@ const getDropIndex = (dropTarget: HTMLElement): number => {
   return todoStore.activeDrills.indexOf(dropItem);
 };
 
-const touchStart = (event: TouchEvent, item: any): void => {
-  draggedItem.value = item;
+const moveDrillUp = (drill: any) => {
+  const index = todoStore.activeDrills.indexOf(drill);
+  todoStore.activeDrills.splice(
+    index - 1,
+    0,
+    todoStore.activeDrills.splice(index, 1)[0]
+  );
 };
 
-const touchEnd = (event: TouchEvent, item: any): void => {
-  const dropIndex = getDropIndex(event.target as HTMLElement);
-  const dragIndex = todoStore.activeDrills.indexOf(draggedItem.value);
-  todoStore.activeDrills.splice(dragIndex, 1);
-  todoStore.activeDrills.splice(dropIndex, 0, draggedItem.value);
+const moveDrillDown = (drill: any) => {
+  const index = todoStore.activeDrills.indexOf(drill);
+  todoStore.activeDrills.splice(
+    index + 1,
+    0,
+    todoStore.activeDrills.splice(index, 1)[0]
+  );
 };
 
-const touchMove = (event: TouchEvent): void => {
-  event.preventDefault();
+const isFirstItem = (drill: any) => {
+  return todoStore.activeDrills.indexOf(drill) === 0;
+};
+
+const isLastItem = (drill: any) => {
+  return (
+    todoStore.activeDrills.indexOf(drill) === todoStore.activeDrills.length - 1
+  );
 };
 </script>
