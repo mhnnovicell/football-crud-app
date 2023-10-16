@@ -1,12 +1,5 @@
 <template>
-  <div
-    class="flex flex-col items-center justify-center w-full h-full m-4"
-    @dragover.prevent
-    @dragenter="dragEnter($event)"
-    @dragleave="dragLeave($event)"
-    @drop="drop($event)"
-    @touchmove.prevent
-  >
+  <div class="flex flex-col items-center justify-center w-full h-full m-4">
     <h3
       class="mb-4 text-xl font-bold text-gray-900 dark:text-white"
       v-if="todoStore.activeDrills >= 1"
@@ -19,9 +12,6 @@
       v-for="drill in todoStore.activeDrills"
       :key="drill.id + drill.name"
       :class="drill.isActive ? 'shadow-md shadow-green-900' : ''"
-      :draggable="true"
-      @dragstart="startDrag($event, drill)"
-      @dragend="endDrag($event, drill)"
       :id="drill.id + drill.name"
     >
       <div class="flex justify-end px-4 pb-4">
@@ -116,7 +106,7 @@
 
 <script setup lang="ts">
 import { useToDoItemsStore } from '@/stores/todoitems.store';
-import { ref, watchEffect } from 'vue';
+import { watchEffect } from 'vue';
 
 const todoStore = useToDoItemsStore();
 
@@ -126,42 +116,6 @@ watchEffect(async () => {
 
 const toggleActiveStatus = (activeBool: boolean, id: number) => {
   todoStore.editDrill(activeBool, id);
-};
-
-const draggedItem = ref(null);
-
-const startDrag = (event: DragEvent, item: any): void => {
-  draggedItem.value = item;
-  event.dataTransfer.effectAllowed = 'move';
-};
-
-const endDrag = (event: DragEvent, item: any): void => {
-  draggedItem.value = item;
-};
-
-const dragEnter = (event: DragEvent): void => {
-  event.target?.classList.add('drag-over');
-};
-
-const dragLeave = (event: DragEvent) => {
-  event.target?.classList.remove('drag-over');
-};
-
-const drop = (event: DragEvent) => {
-  event.preventDefault();
-  event.target?.classList.remove('drag-over');
-  const dropIndex = getDropIndex(event.target as HTMLElement);
-  const dragIndex = todoStore.activeDrills.indexOf(draggedItem.value);
-  todoStore.activeDrills.splice(dragIndex, 1);
-  todoStore.activeDrills.splice(dropIndex, 0, draggedItem.value);
-};
-
-const getDropIndex = (dropTarget: HTMLElement): number => {
-  const dropId = dropTarget.id;
-  const dropItem = todoStore.activeDrills.find(
-    (item: any) => item.id === Number(dropId)
-  );
-  return todoStore.activeDrills.indexOf(dropItem);
 };
 
 const moveDrillUp = (drill: any) => {
