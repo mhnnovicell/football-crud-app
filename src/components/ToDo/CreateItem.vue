@@ -1,7 +1,7 @@
 <template>
   <!-- SE DENNE ARTIKEL https://stephanlangeveld.medium.com/simple-local-storage-implementation-using-vue-3-vueuse-and-pinia-with-zero-extra-lines-of-code-cb9ed2cce42a -->
   <div
-    class="flex w-full p-6 m-4 bg-opacity-50 rounded shadow Pastel bg-gradient-to-tr from-violet-500 to-orange-300 backdrop-blur-xl drop-shadow-lg lg:w-3/4 lg:max-w-lg"
+    class="flex w-full p-6 m-4 bg-gray-800 border-gray-700 rounded-lg shadow lg:w-3/4 lg:max-w-lg"
   >
     <div class="max-w-2xl px-4 py-8 mx-auto lg:py-16">
       <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">
@@ -43,7 +43,7 @@
       </form>
       <a
         @click="addToDo"
-        class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-primary-700 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800"
+        class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-primary-700 focus:ring-4 focus:ring-primary-200 focus:ring-primary-900 hover:bg-primary-800 shadow-sm rounded-lg shadow-green-900"
       >
         Tilføj øvelse
       </a>

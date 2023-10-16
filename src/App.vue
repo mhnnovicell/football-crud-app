@@ -2,7 +2,7 @@
   <Suspense>
     <!-- component with nested async dependencies -->
     <div
-      class="flex flex-wrap items-center justify-center w-full h-full font-sans bg-gradient-to-t from-gray-700 via-gray-900 to-black"
+      class="flex flex-wrap items-center justify-center w-full h-full font-sans bg-gradient-to-tr from-gray-700 via-gray-900 to-black"
     >
       <CreateItem />
       <ActiveItems />

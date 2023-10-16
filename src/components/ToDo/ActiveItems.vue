@@ -15,7 +15,7 @@
     </h3>
 
     <div
-      class="w-full p-4 my-4 text-center bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700"
+      class="w-full p-4 my-4 text-center bg-gray-800 border-gray-700 rounded-lg shadow sm:p-8"
       v-for="drill in todoStore.activeDrills"
       :key="drill.id + drill.name"
       :class="drill.isActive ? 'shadow-md shadow-green-900' : ''"
