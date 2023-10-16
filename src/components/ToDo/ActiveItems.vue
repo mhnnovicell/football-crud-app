@@ -5,6 +5,7 @@
     @dragenter="dragEnter($event)"
     @dragleave="dragLeave($event)"
     @drop="drop($event)"
+    @touchmove.prevent
   >
     <h3
       class="mb-4 text-xl font-bold text-gray-900 dark:text-white"
@@ -21,6 +22,8 @@
       :draggable="true"
       @dragstart="startDrag($event, drill)"
       @dragend="endDrag($event, drill)"
+      @touchstart="touchStart($event, drill)"
+      @touchend="touchEnd($event, drill)"
       :id="drill.id + drill.name"
     >
       <h5 class="mb-2 text-3xl font-bold text-gray-900 dark:text-white">
@@ -111,5 +114,20 @@ const getDropIndex = (dropTarget: HTMLElement): number => {
     (item: any) => item.id === Number(dropId)
   );
   return todoStore.activeDrills.indexOf(dropItem);
+};
+
+const touchStart = (event: TouchEvent, item: any): void => {
+  draggedItem.value = item;
+};
+
+const touchEnd = (event: TouchEvent, item: any): void => {
+  const dropIndex = getDropIndex(event.target as HTMLElement);
+  const dragIndex = todoStore.activeDrills.indexOf(draggedItem.value);
+  todoStore.activeDrills.splice(dragIndex, 1);
+  todoStore.activeDrills.splice(dropIndex, 0, draggedItem.value);
+};
+
+const touchMove = (event: TouchEvent): void => {
+  event.preventDefault();
 };
 </script>
