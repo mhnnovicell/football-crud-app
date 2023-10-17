@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col items-center justify-center w-full h-full m-4">
     <h3
-      class="mb-4 text-xl font-bold text-gray-900 dark:text-white"
+      class="mb-4 text-xl font-bold text-white"
       v-if="todoStore.activeDrills >= 1"
     >
       Aktive øvelser
@@ -64,7 +64,7 @@
           </svg>
         </button>
       </div>
-      <h5 class="mb-2 text-3xl font-bold text-gray-900 dark:text-white">
+      <h5 class="mb-2 text-3xl font-bold text-white">
         {{ drill.name }}
       </h5>
       <p class="mb-5 text-base text-gray-500 sm:text-lg dark:text-gray-400">

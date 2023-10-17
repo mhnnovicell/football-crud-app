@@ -4,22 +4,18 @@
     class="flex w-full p-6 m-4 bg-gray-800 border-gray-700 rounded-lg shadow lg:w-3/4 lg:max-w-lg"
   >
     <div class="max-w-2xl px-4 py-8 mx-auto lg:py-16">
-      <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">
-        Tilføj en ny øvelse
-      </h2>
+      <h2 class="mb-4 text-xl font-bold text-white">Tilføj en ny øvelse</h2>
       <form>
         <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
           <div class="sm:col-span-2">
-            <label
-              for="name"
-              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            <label for="name" class="block mb-2 text-sm font-medium text-white"
               >Øvelse</label
             >
             <input
               type="text"
               name="name"
               id="name"
-              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+              class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
               placeholder="Øvelse"
               v-model="drillName"
             />
@@ -28,13 +24,13 @@
           <div class="sm:col-span-2">
             <label
               for="description"
-              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              class="block mb-2 text-sm font-medium text-white"
               >Description</label
             >
             <textarea
               id="description"
               rows="8"
-              class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+              class="block p-2.5 w-full text-sm bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
               placeholder="Beskrivelse af øvelsen"
               v-model="drillDescription"
             ></textarea>
