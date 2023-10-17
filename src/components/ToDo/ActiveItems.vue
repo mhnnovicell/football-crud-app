@@ -64,9 +64,9 @@
           </svg>
         </button>
       </div>
-      <h5 class="mb-2 text-3xl font-bold text-white">
+      <h3 class="mb-2 text-3xl font-bold text-white">
         {{ drill.name }}
-      </h5>
+      </h3>
       <p class="mb-5 text-base text-gray-500 sm:text-lg dark:text-gray-400">
         {{ drill.description }}
       </p>
