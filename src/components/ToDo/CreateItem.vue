@@ -37,12 +37,12 @@
           </div>
         </div>
       </form>
-      <a
+      <button
         @click="addToDo"
         class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-primary-700 focus:ring-4 focus:ring-primary-200 focus:ring-primary-900 hover:bg-primary-800 shadow-sm rounded-lg shadow-green-900"
       >
         Tilføj øvelse
-      </a>
+      </button>
     </div>
   </div>
 </template>

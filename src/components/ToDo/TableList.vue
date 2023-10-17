@@ -27,16 +27,18 @@
             <td class="px-6 py-4 whitespace-nowrap">{{ drill.name }}</td>
             <td class="px-6 py-4 whitespace-nowrap">{{ drill.description }}</td>
             <td class="flex items-center px-6 py-4 space-x-3">
-              <a
+              <button
                 @click="toggleModal(drill.id)"
                 class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-                >Rediger</a
               >
-              <a
+                Rediger
+              </button>
+              <button
                 @click="todoStore.deleteDrill(drill.id)"
                 class="font-medium text-red-600 dark:text-red-500 hover:underline"
-                >Fjern</a
               >
+                Fjern
+              </button>
             </td>
           </tr>
         </tbody>

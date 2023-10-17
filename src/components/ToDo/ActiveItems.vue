@@ -73,7 +73,7 @@
       <div
         class="items-center justify-center space-y-4 sm:flex sm:space-y-0 sm:space-x-4"
       >
-        <a
+        <button
           @click="toggleActiveStatus(false, drill.id)"
           class="inline-flex items-center justify-center w-2/3 p-2 text-white rounded-lg shadow-sm cursor-pointer sm:w-auto shadow-red-500"
         >
@@ -98,7 +98,7 @@
               Fjern aktiv øvelse
             </div>
           </div>
-        </a>
+        </button>
       </div>
     </div>
   </div>
