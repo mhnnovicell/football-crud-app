@@ -56,7 +56,6 @@
 import { useToDoItemsStore } from '@/stores/todoitems.store';
 import { computed, ref, watchEffect } from 'vue';
 import EditItemModal from '@/components/ToDo/EditItemModal.vue';
-import { supabase } from '../../supabase';
 
 const todoStore = useToDoItemsStore();
 
