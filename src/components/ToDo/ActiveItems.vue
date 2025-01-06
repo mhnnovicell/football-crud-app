@@ -105,7 +105,7 @@
 </template>
 
 <script setup lang="ts">
-import { useToDoItemsStore } from '@/stores/todoitems.store';
+import { useToDoItemsStore } from '@/stores/testitems.store';
 import { watchEffect } from 'vue';
 
 const todoStore = useToDoItemsStore();

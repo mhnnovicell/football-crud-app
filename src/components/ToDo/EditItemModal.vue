@@ -102,9 +102,8 @@
 </template>
 
 <script setup lang="ts">
-import { useToDoItemsStore } from '@/stores/todoitems.store';
+import { useToDoItemsStore } from '@/stores/testitems.store';
 import { ref, watch, computed } from 'vue';
-import { supabase } from '../../supabase';
 
 const todoStore = useToDoItemsStore();
 
@@ -112,16 +111,16 @@ const isActive = ref(false);
 
 const drillData = ref(null);
 
-await supabase
-  .from('drills')
-  .select()
-  .eq('id', todoStore.selectedDrillId)
-  .then((result) => {
-    drillData.value = result.data;
-  })
-  .catch((err) => {
-    alert(err);
-  });
+const fetchDrillData = async () => {
+  try {
+    const drill = await todoStore.getDrillById(todoStore.selectedDrillId);
+    drillData.value = [drill];
+  } catch (err) {
+    alert('Error fetching drill data:', err);
+  }
+};
+
+await fetchDrillData();
 
 const props = defineProps({
   show: {

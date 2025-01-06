@@ -53,7 +53,7 @@
 </template>
 
 <script setup lang="ts">
-import { useToDoItemsStore } from '@/stores/todoitems.store';
+import { useToDoItemsStore } from '@/stores/testitems.store';
 import { computed, ref, watchEffect } from 'vue';
 import EditItemModal from '@/components/ToDo/EditItemModal.vue';
 

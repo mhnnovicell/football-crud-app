@@ -48,7 +48,7 @@
 </template>
 
 <script setup lang="ts">
-import { useToDoItemsStore } from '@/stores/todoitems.store';
+import { useToDoItemsStore } from '@/stores/testitems.store';
 import { ref } from 'vue';
 
 const todoStore = useToDoItemsStore();

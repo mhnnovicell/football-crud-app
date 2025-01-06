@@ -28,7 +28,9 @@
 </template>
 
 <script setup lang="ts">
-import { defineAsyncComponent } from 'vue';
+
+import { defineAsyncComponent,  onMounted } from 'vue';
+import { useToDoItemsStore } from '@/stores/testitems.store';
 
 const CreateItem = defineAsyncComponent(
   () => import('./components/ToDo/CreateItem.vue')
@@ -41,4 +43,15 @@ const TableList = defineAsyncComponent(
 const ActiveItems = defineAsyncComponent(
   () => import('./components/ToDo/ActiveItems.vue')
 );
+
+const todoStore = useToDoItemsStore();
+
+onMounted(async () => {
+  try {
+    await todoStore.authenticate('mikkelhn1@hotmail.com', 'mikkelhn1');
+    // Now you can use the token in other methods/calls
+  } catch (error) {
+    console.error('Authentication failed:', error);
+  }
+});
 </script>
